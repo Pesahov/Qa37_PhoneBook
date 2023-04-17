@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.Random;
 
 public class HelperContact extends HelperBase{
     public HelperContact(WebDriver wd) {
@@ -91,6 +92,22 @@ public class HelperContact extends HelperBase{
             }
 
         }
+    }
+
+    private void addOneContact() {
+        int i = new Random().nextInt( 1000)+1000;
+        Contact contact = Contact.builder()
+                .name("Harry")
+                .lastName("Potter")
+                .address("Hogwards")
+                .email("harry"+i+"@gmail.com")
+                .phone("24335558"+i)
+                .description("Frend")
+                .build();
+        openContactForm();
+        fillContactForm(contact);
+        saveContact();
+        pause(500);
     }
 }
 
