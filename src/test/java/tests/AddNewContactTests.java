@@ -1,5 +1,6 @@
 package tests;
 
+import manager.DataProviderContact;
 import models.Contact;
 import models.User;
 import org.testng.Assert;
@@ -17,17 +18,10 @@ public class AddNewContactTests extends TestBase{
         }
     }
 
-    @Test
-    public void addContactSuccessAllFields(){
-            int i = new Random().nextInt(1000)+1000;
-            Contact contact = Contact.builder()
-                    .name("Yaniv")
-                    .lastName("Gavri")
-                    .phone("34343434"+i)
-                    .email("yaniv"+i+"@gmail.com")
-                    .address("Tel Aviv, Israel")
-                    .description("all fields")
-                    .build();
+    @Test(dataProvider = "contactSuccess",dataProviderClass = DataProviderContact.class)
+    public void  addContactSuccessAllFields(Contact contact){
+
+        logger.info("Tests run with data: --->"+contact.toString());
             app.getHelperContact().openContactForm();
             app.getHelperContact().fillContactForm(contact);
             app.getHelperContact().saveContact();
@@ -35,7 +29,6 @@ public class AddNewContactTests extends TestBase{
             Assert.assertTrue(app.getHelperContact().isContactAddedByPhone(contact.getPhone()));
 
         }
-
 
     @Test
     public void addContactSuccessRequiredFields(){
