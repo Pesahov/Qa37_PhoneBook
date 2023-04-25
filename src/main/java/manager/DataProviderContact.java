@@ -16,27 +16,37 @@ public class DataProviderContact {
         return list.iterator();
     }
 
-
-
     @DataProvider
-    public Iterator<Object[]> contactSuccess(){
+    public Iterator<Object[]> contactWrongPhone(){
         List<Object[]> list= new ArrayList<>();
-
         list.add(new Object[]{Contact.builder()
-                .name("Tony")
-                .lastName("Stark")
+                .name("John")
+                .lastName("Wick")
+                .email("john@gmail.com")
                 .address("NY")
-                .phone("34343434789")
-                .email("stark@gmail.com")
-                .description("all fields")
-                .build()});
+                .phone("123")
+                .description("The best John").build()});
         list.add(new Object[]{Contact.builder()
-                .name("TonyReq")
-                .lastName("Stark")
+                .name("John")
+                .lastName("Wick")
+                .email("john@gmail.com")
                 .address("NY")
-                .phone("3434343445")
-                .email("stark1@gmail.com")
-                .build()});
+                .phone("12345678910111213141516")
+                .description("The best John").build()});
+        list.add(new Object[]{Contact.builder()
+                .name("John")
+                .lastName("Wick")
+                .email("john@gmail.com")
+                .address("NY")
+                .phone("wwwwwwwwwww")
+                .description("The best John").build()});
+        list.add(new Object[]{Contact.builder()
+                .name("John")
+                .lastName("Wick")
+                .email("john@gmail.com")
+                .address("NY")
+                .phone("")
+                .description("The best John").build()});
 
         return list.iterator();
     }
