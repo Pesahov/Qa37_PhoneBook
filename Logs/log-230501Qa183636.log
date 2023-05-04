@@ -1,0 +1,2 @@
+18:36:37.164  INFO  tests.TestBase - Test data --> email: 'shilolgmail.com' & password : 'Shilol12345$'
+18:36:37.190  INFO  tests.TestBase - Tests run with data: --->Contact(name=TonyReq1870, lastName=Stark, phone=343434341870, email=stark1870@gmail.com, address=NY, description=null)

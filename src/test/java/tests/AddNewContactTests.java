@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class AddNewContactTests extends TestBase{
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void preCondition() {
         if (!app.getHelperUser().isLogged()) {
             app.getHelperUser().login(new User().withEmail("shilol@gmail.com").withPassword("Shilol12345$"));
@@ -30,7 +30,19 @@ public class AddNewContactTests extends TestBase{
 
         }
 
-    @Test
+    @Test(dataProvider = "contactCSV",dataProviderClass = DataProviderContact.class)
+    public void  addContactSuccessAllFieldsCSV(Contact contact){
+
+        logger.info("Tests run with data: --->"+contact.toString());
+        app.getHelperContact().openContactForm();
+        app.getHelperContact().fillContactForm(contact);
+        app.getHelperContact().saveContact();
+        Assert.assertTrue(app.getHelperContact().isContactAddedByName(contact.getName()));
+        Assert.assertTrue(app.getHelperContact().isContactAddedByPhone(contact.getPhone()));
+
+    }
+
+    @Test(groups = {"smoke","regress","retest"})
     public void addContactSuccessRequiredFields(){
         int i = new Random().nextInt(1000)+1000;
         Contact contact = Contact.builder()
